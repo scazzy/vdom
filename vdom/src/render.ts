@@ -1,4 +1,4 @@
-import { VNode as TypeVNode } from './types';
+import { VNode as TypeVNode } from './types.js';
 
 /**
  * Takes a Virtual DOM Node and return a real HTML DOM Node
@@ -7,7 +7,7 @@ import { VNode as TypeVNode } from './types';
  */
 function renderElement(vNode: TypeVNode): HTMLElement {
   const $node = document.createElement(vNode.tagName);
-  for (const [k, v] of Object.entries(vNode.attrs)) {
+  for (const [k, v] of Object.entries(vNode.attrs||{})) {
     $node.setAttribute(k, v);
   }
   for (const childNode of vNode.children) {
@@ -26,8 +26,8 @@ function renderText(str: string): Text {
 }
 
 function render(vNode: TypeVNode): HTMLElement|Text {
-  if (!vNode) return undefined;
-  if (typeof vNode === 'string') return renderText(vNode);
+  if (vNode === undefined || vNode === null) return null;
+  if (typeof vNode === 'string' || typeof vNode === 'number') return renderText(vNode);
   return renderElement(vNode);
 }
 

@@ -1,11 +1,12 @@
-import { VNode as TypeVNode } from './types';
-import render from './render';
+import { VNode as TypeVNode } from './types.js';
+import render from './render.js';
 
-function mount(vNode: TypeVNode, $container: HTMLElement) {
-  if (!$container || !($container  instanceof HTMLElement))
-    throw new Error('Container expected of type HTMLElement');
+function mount($node: HTMLElement, $target: HTMLElement) {
+  if (!$target || !($target  instanceof HTMLElement))
+    throw new Error('target expected of type HTMLElement');
 
-  $container.replaceWith(render(vNode));
+  $target.replaceWith($node);
+  return $node;
 }
 
 export default mount;

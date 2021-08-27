@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,15 +9,13 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-exports.__esModule = true;
-var createElement = function (tagName, options) {
-    if (options === void 0) { options = {}; }
-    var children = options.children, attrs = __rest(options, ["children"]);
+const createElement = function (tagName, options = {}) {
+    const { children } = options, attrs = __rest(options, ["children"]);
     return {
-        tagName: tagName,
-        attrs: attrs,
-        children: children,
-        $node: null
+        tagName,
+        attrs,
+        children,
+        $node: null,
     };
 };
-exports["default"] = createElement;
+export default createElement;

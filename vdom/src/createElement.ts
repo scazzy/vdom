@@ -4,7 +4,7 @@
  * const HTMLElement = render(Component) // returns DOM of the component
  * mount(element, HTMLElement);
  */
-import { VNode as TypeVNode } from './types';
+import { VNode as TypeVNode } from './types.js';
 
 type CreateElementAttributeProps = {
   children?: TypeVNode[],

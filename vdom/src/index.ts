@@ -1,9 +1,3 @@
-import createElement from "./createElement";
-import render from "./render";
-import mount from "./mount";
-
-export {
-  createElement,
-  render,
-  mount,
-};
+export {default as createElement} from "./createElement.js";
+export {default as render} from "./render.js";
+export {default as mount} from "./mount.js";
