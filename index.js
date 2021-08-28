@@ -1,4 +1,4 @@
-import { render, mount, createElement } from './dist/index.js';
+import { render, mount, createElement, diff } from './dist/index.js';
 
 let count = 0;
 function createCountApp(count) {
@@ -15,7 +15,13 @@ function createCountApp(count) {
   });
 }
 
-let $app = document.getElementById('root');
+const $root = document.getElementById('root');
+let oldVTree = createCountApp(count);
+let $app = render(oldVTree);
+mount($app, $root);
 setInterval(() => {
-  $app = mount(render(createCountApp(count++)), $app);
+  const newVTree = createCountApp(count++);
+  const patch = diff(oldVTree, newVTree);
+  $app = patch($app);
+  oldVTree = newVTree;
 }, 1000);
